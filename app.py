@@ -44,7 +44,7 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 st.title("Flower predictor")
 
-nav=st.sidebar.radio("Navigation",["Home","Data Visualisation","Prediction"])
+nav=st.sidebar.radio("Navigation",["Home","Data Visualisation","Models","Prediction"])
 col=st.sidebar.selectbox("Choose prediction model",["Logistic Regression","KNN","SVM","Decision Tree","Random Forest"])
 
 if nav=="Home":
@@ -174,56 +174,56 @@ if nav=="Prediction":
             st.success(f"Predicted Flower is {(prediction5)}")
 
 
-# if nav=="Models":
-#     st.header("Models")
+if nav=="Models":
+    st.header("Models")
     
-#     st.subheader("Logistic Regression")
+    st.subheader("Logistic Regression")
    
-#     logmodel=LogisticRegression(random_state=101)
-#     logmodel.fit(x_train,y_train)
-#     prediction=logmodel.predict(x_test)
-#     st.write(classification_report(y_test,prediction))
-#     st.write(accuracy_score(y_test,prediction))
-#     st.write(confusion_matrix(y_test,prediction))
+    logmodel=LogisticRegression(random_state=101)
+    logmodel.fit(x_train,y_train)
+    prediction=logmodel.predict(x_test)
+    st.write(classification_report(y_test,prediction))
+    st.write(accuracy_score(y_test,prediction))
+    st.write(confusion_matrix(y_test,prediction))
 
-#     st.subheader("KNN")
-#     from sklearn.neighbors import NearestNeighbors
-#     from sklearn.neighbors import KNeighborsClassifier
-#     nn=NearestNeighbors(5)
-#     nn.fit(data)
-#     knn=KNeighborsClassifier(n_neighbors=4,p=2,metric='minkowski',algorithm='auto')
-#     knn.fit(x_train,y_train)
-#     prediction2=knn.predict(x_test)
-#     st.write(classification_report(y_test,prediction2))
-#     st.write(accuracy_score(y_test,prediction2))
-#     st.write(confusion_matrix(y_test,prediction2))
+    st.subheader("KNN")
+    from sklearn.neighbors import NearestNeighbors
+    from sklearn.neighbors import KNeighborsClassifier
+    nn=NearestNeighbors(5)
+    nn.fit(data)
+    knn=KNeighborsClassifier(n_neighbors=4,p=2,metric='minkowski',algorithm='auto')
+    knn.fit(x_train,y_train)
+    prediction2=knn.predict(x_test)
+    st.write(classification_report(y_test,prediction2))
+    st.write(accuracy_score(y_test,prediction2))
+    st.write(confusion_matrix(y_test,prediction2))
 
-#     st.subheader("SVM")
-#     from sklearn.svm import SVC
-#     svm=SVC(kernel='rbf',random_state=0,gamma=0.05,C=1.0)
-#     svm.fit(x_train,y_train)
-#     prediction3=svm.predict(x_test)
-#     st.write(classification_report(y_test,prediction3))
-#     st.write(accuracy_score(y_test,prediction3))
-#     st.write(confusion_matrix(y_test,prediction3))
+    st.subheader("SVM")
+    from sklearn.svm import SVC
+    svm=SVC(kernel='rbf',random_state=0,gamma=0.05,C=1.0)
+    svm.fit(x_train,y_train)
+    prediction3=svm.predict(x_test)
+    st.write(classification_report(y_test,prediction3))
+    st.write(accuracy_score(y_test,prediction3))
+    st.write(confusion_matrix(y_test,prediction3))
 
-#     st.subheader("Decision Tree")
-#     from sklearn.tree import DecisionTreeClassifier
-#     tree=DecisionTreeClassifier(random_state=101)
-#     tree.fit(x_train,y_train)
-#     prediction4=tree.predict(x_test)
-#     st.write(classification_report(y_test,prediction4))
-#     st.write(accuracy_score(y_test,prediction4))
-#     st.write(confusion_matrix(y_test,prediction4))
+    st.subheader("Decision Tree")
+    from sklearn.tree import DecisionTreeClassifier
+    tree=DecisionTreeClassifier(random_state=101)
+    tree.fit(x_train,y_train)
+    prediction4=tree.predict(x_test)
+    st.write(classification_report(y_test,prediction4))
+    st.write(accuracy_score(y_test,prediction4))
+    st.write(confusion_matrix(y_test,prediction4))
 
-#     st.subheader("Random Forest")
-#     from sklearn.ensemble import RandomForestClassifier
-#     clf=RandomForestClassifier(n_estimators=100)
-#     clf.fit(x_train,y_train)
-#     prediction5=clf.predict(x_test)
-#     st.write(classification_report(y_test,prediction5))
-#     st.write(accuracy_score(y_test,prediction5))
-#     st.write(confusion_matrix(y_test,prediction5))
+    st.subheader("Random Forest")
+    from sklearn.ensemble import RandomForestClassifier
+    clf=RandomForestClassifier(n_estimators=100)
+    clf.fit(x_train,y_train)
+    prediction5=clf.predict(x_test)
+    st.write(classification_report(y_test,prediction5))
+    st.write(accuracy_score(y_test,prediction5))
+    st.write(confusion_matrix(y_test,prediction5))
 
     
 
