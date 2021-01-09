@@ -43,13 +43,21 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 
 st.title("Flower predictor")
+st.sidebar.title("Prediction App")
+st.sidebar.header("Navigation Pane")
 
-nav=st.sidebar.radio("Navigation",["Home","Data Visualisation","Models","Prediction"])
-col=st.sidebar.selectbox("Choose prediction model",["Logistic Regression","KNN","SVM","Decision Tree","Random Forest"])
+nav=st.sidebar.radio("",["Home","Data Visualisation","Models","Prediction"])
+# col=st.sidebar.selectbox("Choose prediction model",["Logistic Regression","KNN","SVM","Decision Tree","Random Forest"])
+
 
 if nav=="Home":
-    st.image("data//Flower.jpg.png",width=800,height=1000)
+    st.image(["data//vesicolor.jpg.png","data//verginica.jpg.png","data//vesicolor.jpg.png"],width=200,height=200)
     
+
+    st.write("## Description of Predictor App")
+    st.write("### For the given values of features which are the Sepal Length, Sepal Width,Petal Length,Petal Width and by using different regression models the app can predict the flower.")
+    st.write("#### The dataset used is Iris Flower Dataset ")
+    st.write("#### It can be downloaded from  https://www.kaggle.com/uciml/iris")
     st.header("Description of DataSet")
     st.subheader("Context")
     st.write("""The Iris flower data set is a multivariate data set introduced by the British statistician and biologist Ronald Fisher in his 1936 paper The use of multiple measurements in taxonomic problems. It is sometimes called Anderson's Iris data set because Edgar Anderson collected the data to quantify the morphologic variation of Iris flowers of three related species. The data set consists of 50 samples from each of three species of Iris (Iris Setosa, Iris virginica, and Iris versicolor). Four features were measured from each sample: the length and the width of the sepals and petals, in centimeters.
@@ -73,34 +81,44 @@ if nav=="Home":
 
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
-    
+
 
 if nav=="Data Visualisation":
+    st.sidebar.write("# Choose From the following")
     st.header("Visualisation")
-    if st.checkbox("Count Plot"):
+    st.write("### Data visualization is the graphical representation of information and data. By using visual elements like charts, graphs, and maps, data visualization tools provide an accessible way to see and understand trends, outliers, and patterns in data ")
+    if st.sidebar.checkbox("Count Plot"):
+        st.write("## Count Plot")
         sns.countplot(x="species",data=data)
         st.pyplot()
         # st.set_option('deprecation.showPyplotGlobalUse', False)
     
-    if st.checkbox("Pie Chart"):
+    if st.sidebar.checkbox("Pie Chart"):
+        st.write("## Pie Chart")
         data["species"].value_counts().plot.pie(explode=[0.01,0.01,0.01],autopct='%1.1f%%',figsize=(10,8))
         st.pyplot()
     
-    if st.checkbox("Histogram"):
+    if st.sidebar.checkbox("Histogram"):
+        st.write("## Histogram")
         data.hist(edgecolor='black',figsize=(10,8))
         st.pyplot()
     
-    if st.checkbox("Pair Plot"):
+    if st.sidebar.checkbox("Pair Plot"):
+        st.write("## Pair Plot")
         sns.pairplot(data,hue="species")
         st.pyplot()
     
-    if st.checkbox("Heat Plot"):
+    if st.sidebar.checkbox("Heat Plot"):
+        st.write("## Heat Plot")
         Correlation_matrix=data.corr().round(2)
         sns.heatmap(data=Correlation_matrix,annot=True)
         st.pyplot()
 
 
 if nav=="Prediction":
+    st.sidebar.write("# Choose From the following")
+    col=st.sidebar.selectbox("",["Logistic Regression","KNN","SVM","Decision Tree","Random Forest"])
+    
     if col=="Logistic Regression":
         st.header("Know the Flower")
         val1=st.slider("Sepal Length",min_value=0.1,max_value=10.1,step=0.1)
@@ -172,12 +190,19 @@ if nav=="Prediction":
 
         if st.button("Predict"):
             st.success(f"Predicted Flower is {(prediction5)}")
+    
+    # if col=="Average Prediction of Models":
+    #     prediction6=(prediction+prediction2+prediction3+prediction4+prediction5)/4
+    #     if st.button("Predict"):
+    #         st.success(f"Predicted Flower is {(prediction6)}")
+
+
 
 
 if nav=="Models":
     st.header("Models")
-    
     st.subheader("Logistic Regression")
+    st.write("### Logistic regression is a statistical model that in its basic form uses a logistic function to model a binary dependent variable, although many more complex extensions exist. In regression analysis, logistic regression (or logit regression) is estimating the parameters of a logistic model (a form of binary regression).")
    
     logmodel=LogisticRegression(random_state=101)
     logmodel.fit(x_train,y_train)
@@ -187,6 +212,7 @@ if nav=="Models":
     st.write(confusion_matrix(y_test,prediction))
 
     st.subheader("KNN")
+    st.write("### In statistics, the k-nearest neighbors algorithm is a non-parametric machine learning method.It is used for classification and regression. In both cases, the input consists of the k closest training examples in feature space")
     from sklearn.neighbors import NearestNeighbors
     from sklearn.neighbors import KNeighborsClassifier
     nn=NearestNeighbors(5)
@@ -199,6 +225,7 @@ if nav=="Models":
     st.write(confusion_matrix(y_test,prediction2))
 
     st.subheader("SVM")
+    st.write("### In machine learning, support-vector machines are supervised learning models with associated learning algorithms that analyze data for classification and regression analysis.A support vector machine (SVM) is a supervised machine learning model that uses classification algorithms for two-group classification problems.")
     from sklearn.svm import SVC
     svm=SVC(kernel='rbf',random_state=0,gamma=0.05,C=1.0)
     svm.fit(x_train,y_train)
@@ -208,6 +235,7 @@ if nav=="Models":
     st.write(confusion_matrix(y_test,prediction3))
 
     st.subheader("Decision Tree")
+    st.write("### A decision tree is a flowchart-like structure in which each internal node represents a ""test" "on an attribute (e.g. whether a coin flip comes up heads or tails), each branch represents the outcome of the test, and each leaf node represents a class label (decision taken after computing all attributes).")
     from sklearn.tree import DecisionTreeClassifier
     tree=DecisionTreeClassifier(random_state=101)
     tree.fit(x_train,y_train)
@@ -217,6 +245,7 @@ if nav=="Models":
     st.write(confusion_matrix(y_test,prediction4))
 
     st.subheader("Random Forest")
+    st.write("### Random forests or random decision forests are an ensemble learning method for classification, regression and other tasks that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes or mean/average prediction of the individual trees")
     from sklearn.ensemble import RandomForestClassifier
     clf=RandomForestClassifier(n_estimators=100)
     clf.fit(x_train,y_train)
