@@ -51,7 +51,7 @@ nav=st.sidebar.radio("",["Home","Data Visualisation","Models","Prediction"])
 
 
 if nav=="Home":
-    st.image(["data//vesicolor.jpg.png","data//verginica.jpg.png","data//vesicolor.jpg.png"],width=200,height=200)
+    st.image(["data//vesicolor.jpg.png","data//verginica.jpg.png","data//Setosa.jpg.png"],width=200,height=200)
     
 
     st.write("## Description of Predictor App")
